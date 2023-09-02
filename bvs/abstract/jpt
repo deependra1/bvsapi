@@ -1,0 +1,84 @@
+from django.core.cache import cache
+from django.db import models
+import uuid
+
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
+
+class AbstractManager(models.Manager):
+    def get_object_by_public_id(self, public_id):
+        try:
+            instance = self.get(public_id=public_id)
+            return instance
+        except (ObjectDoesNotExist, ValueError, TypeError):
+            return Http404
+
+class AbstractModel(models.Model):
+    public_id = models.UUIDField(
+        db_index=True, unique=True, default=uuid.uuid4, editable=False
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    objects = AbstractManager()
+
+    class Meta:
+        abstract = True
+
+
+
+
+class PatientManager(AbstractManager):
+    pass
+
+
+class Patient(AbstractModel):
+    creator = models.ForeignKey(to="User", on_delete=models.CASCADE)
+    registration_date = models.DateField(auto_now=True)
+    fiscal_year = models.CharField(max_length=10, blank=True)
+    registration_location = models.CharField(max_length=5, default="KTM")
+    registration_number = models.CharField(max_length=20, blank=True, unique=True)
+
+    fname = models.CharField(max_length=255)
+    lname = models.CharField(max_length=255)
+    mname = models.CharField(max_length=255)
+
+
+
+    objects = PatientManager()
+
+
+    def __str__(self):
+        return self.registration_number
+
+    def save(self, *args, **kwargs):
+        if not self.registration_number:
+            last_registration = Patient.objects.filter(
+                fiscal_year=self.fiscal_year,
+                registration_location=self.registration_location
+            ).order_by('-registration_number').first()
+
+            if last_registration:
+                last_serial_number = int(last_registration.registration_number.split('-')[-1])
+                new_serial_number = last_serial_number + 1
+            else:
+                new_serial_number = 1
+
+            self.registration_number = f"{self.fiscal_year}-{self.registration_location}-{new_serial_number}"
+
+        super().save(*args, **kwargs)
+
+
+class TreatmentManager(AbstractManager):
+    pass
+
+
+class Treatment(AbstractModel):
+    patient = models.ForeignKey("Patient", on_delete=models.CASCADE)
+
+    hospital = models.TextField()
+
+    objects = TreatmentManager()
+
+    def __str__(self):
+        return self.hospital
