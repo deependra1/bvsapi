@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/bvsnepal/bvsapi
+    - export DEPLOYPATH=/home/bvsnepal/bvsapi/backend
     - /bin/cp -R images $DEPLOYPATH
