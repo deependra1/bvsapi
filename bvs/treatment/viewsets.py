@@ -10,7 +10,7 @@ from bvs.treatment.serializers import TreatmentSerializer
 
 class TreatmentViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = TreatmentSerializer
 
     def get_queryset(self):

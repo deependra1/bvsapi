@@ -9,7 +9,7 @@ from bvs.occupation.serializers import OccupationSerializer
 
 class OccupationViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = OccupationSerializer
 
     def get_queryset(self):

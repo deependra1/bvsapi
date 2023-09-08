@@ -17,6 +17,8 @@ from bvs.religion.viewsets import ReligionViewSet
 from bvs.funding.viewsets import FundingViewSet
 from bvs.pshychosocial.viewsets import PsychosocialViewSet
 from bvs.physiotherapy.viewsets import PhysiotherapyViewSet
+from bvs.burntype.viewsets import BurnTypeViewSet
+from bvs.burncause.viewsets import BurnCauseViewSet
 
 router = routers.SimpleRouter()
 
@@ -32,6 +34,8 @@ router.register(r"occupation", OccupationViewSet, basename="occupation")
 router.register(r"ethnic", EthnicViewSet, basename="ethnic")
 router.register(r"family", FamilyViewSet, basename="family")
 router.register(r"religion", ReligionViewSet, basename="religion")
+router.register(r"burn_type", BurnTypeViewSet, basename="burn_type")
+router.register(r"burn_cause", BurnCauseViewSet, basename="burn_cause")
 
 
 router.register(r"patient", PatientViewSet, basename="patient")

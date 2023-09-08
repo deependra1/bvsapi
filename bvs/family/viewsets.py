@@ -9,7 +9,7 @@ from bvs.family.serializers import FamilySerializer
 
 class FamilyViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = FamilySerializer
 
     def get_queryset(self):

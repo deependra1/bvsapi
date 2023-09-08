@@ -10,7 +10,7 @@ from bvs.physiotherapy.serializers import PhysiotherapySerializer
 
 class PhysiotherapyViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = PhysiotherapySerializer
 
     def get_queryset(self):

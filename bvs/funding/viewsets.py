@@ -10,7 +10,7 @@ from bvs.funding.serializers import FundingSerializer
 
 class FundingViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = FundingSerializer
 
     # def get_queryset(self):

@@ -11,7 +11,7 @@ from bvs.patient.serializers import PatientSerializer
 
 class PatientViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = PatientSerializer
 
     # filterset_fields = ["author__public_id"]

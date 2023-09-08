@@ -44,6 +44,7 @@ class FundingSerializer(AbstractSerializer):
             "id",
             "patient",
             "donor",
+            "service_title",
             "funding_amount",
             "created",
             "updated",

@@ -10,7 +10,7 @@ from bvs.pshychosocial.serializers import PsychosocialSerializer
 
 class PsychosocialViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = PsychosocialSerializer
 
     def get_queryset(self):

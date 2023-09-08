@@ -17,5 +17,6 @@ media
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+config/settings.py
 
 

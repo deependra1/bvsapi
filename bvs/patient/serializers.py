@@ -19,6 +19,12 @@ from bvs.religion.serializers import ReligionSerializer
 from bvs.family.models import Family
 from bvs.family.serializers import FamilySerializer
 
+from bvs.burncause.models import BurnCause
+from bvs.burncause.serializers import BurnCauseSerializer
+
+from bvs.burntype.models import BurnType
+from bvs.burntype.serializers import BurnTypeSerializer
+
 
 # from bvs.user.models import User
 # from bvs.user.serializers import UserSerializer
@@ -53,6 +59,14 @@ class PatientSerializer(AbstractSerializer):
         queryset=Family.objects.all(), slug_field="public_id"
     )
 
+    burn_cause = serializers.SlugRelatedField(
+        queryset=BurnCause.objects.all(), slug_field="public_id"
+    )
+
+    burn_type = serializers.SlugRelatedField(
+        queryset=BurnType.objects.all(), slug_field="public_id"
+    )
+
     def to_representation(self, instance):
         rep = super().to_representation(instance)
 
@@ -66,6 +80,9 @@ class PatientSerializer(AbstractSerializer):
         religion = Religion.objects.get_object_by_public_id(rep["religion"])
         family_type = Family.objects.get_object_by_public_id(rep["family_type"])
 
+        burn_cause = BurnCause.objects.get_object_by_public_id(rep["burn_cause"])
+        burn_type = BurnType.objects.get_object_by_public_id(rep["burn_type"])
+
         rep["creator"] = UserSerializer(creator, context=self.context).data
 
         rep["patient_occupation"] = OccupationSerializer(patient_occupation, context=self.context).data
@@ -75,6 +92,9 @@ class PatientSerializer(AbstractSerializer):
         rep["ethnic_group"] = EthnicSerializer(ethnic_group, context=self.context).data
         rep["religion"] = ReligionSerializer(religion, context=self.context).data
         rep["family_type"] = FamilySerializer(family_type, context=self.context).data
+
+        rep["burn_cause"] = BurnCauseSerializer(burn_cause, context=self.context).data
+        rep["burn_type"] = BurnTypeSerializer(burn_type, context=self.context).data
 
         return rep
 
@@ -97,12 +117,24 @@ class PatientSerializer(AbstractSerializer):
             "local",
             "ward",
             "tole",
+            "foreign_address",
+            "country2",
+            "provence2",
+            "district2",
+            "local2",
+            "ward2",
+            "tole2",
+            "foreign_address2",
             "date_of_birth",
             "age_at_incident",
+            "month_at_incident",
             "gender",
             "citizenship_no",
             "patient_contact",
             "parents_contact",
+            "optional_contact",
+            "patient_education",
+            "patient_language",
             "patient_occupation",
             "suppose_occupation",
             "parents_occupation",
@@ -112,14 +144,26 @@ class PatientSerializer(AbstractSerializer):
             "material_status",
             "number_of_child",
             "number_of_siblings",
+            "economic_status",
+            "family_support",
+            "pregnant_women",
+            "lactating_mother",
+            "with_disabilities",
+            "mental_illness",
+            "epilepsy",
+            "hiv_positive",
+            "echo_other",
             "date_of_incident",
             "area_of_burn",
             "percentage_of_burn",
             "degree_of_burn",
-            "cause_of_burn",
-            "type_of_burn",
+            "burn_cause",
+            "burn_type",
             "place_of_incident",
             "description_of_incident",
+            "person_at_hospital",
+            "relation_to_parent",
+            "person_contact",
             "created",
             "updated",
         ]

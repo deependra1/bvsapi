@@ -10,7 +10,7 @@ from bvs.donor.serializers import DonorSerializer
 
 class DonorViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = DonorSerializer
 
     def get_queryset(self):

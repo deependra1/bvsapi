@@ -3,20 +3,20 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
 from bvs.abstract.viewsets import AbstractViewSet
-from bvs.ethnic.models import Ethnic
-from bvs.ethnic.serializers import EthnicSerializer
+from bvs.burncause.models import BurnCause
+from bvs.burncause.serializers import BurnCauseSerializer
 
 
-class EthnicViewSet(AbstractViewSet):
+class BurnCauseViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
     permission_classes = (IsAuthenticated,)
-    serializer_class = EthnicSerializer
+    serializer_class = BurnCauseSerializer
 
     def get_queryset(self):
-        return Ethnic.objects.all().order_by('-created')
+        return BurnCause.objects.all().order_by('-created')
 
     def get_object(self):
-        obj = Ethnic.objects.get_object_by_public_id(self.kwargs["pk"])
+        obj = BurnCause.objects.get_object_by_public_id(self.kwargs["pk"])
 
         self.check_object_permissions(self.request, obj)
 

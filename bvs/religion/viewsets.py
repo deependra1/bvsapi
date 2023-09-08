@@ -9,7 +9,7 @@ from bvs.religion.serializers import ReligionSerializer
 
 class ReligionViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = ReligionSerializer
 
     def get_queryset(self):

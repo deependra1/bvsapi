@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'bvs.funding.apps.FundingConfig',
     'bvs.pshychosocial.apps.PshychosocialConfig',
     'bvs.physiotherapy.apps.PhysiotherapyConfig',
+    'bvs.burncause.apps.BurncauseConfig',
+    'bvs.burntype.apps.BurntypeConfig',
 ]
 
 MIDDLEWARE = [
@@ -93,7 +95,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bvs2',
+        'NAME': 'bvs3',
         'USER': 'root',
         'PASSWORD': '12345678',
         'HOST': '127.0.0.1',
