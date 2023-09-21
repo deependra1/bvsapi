@@ -1,0 +1,47 @@
+[
+    {
+        "model": "bvs_burncause.BurnCause",
+        "pk": 1,
+        "fields": {
+            "burn_cause": "Domestic Violence",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burncause.BurnCause",
+        "pk": 2,
+        "fields": {
+            "burn_cause": "Attempted Suicide",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burncause.BurnCause",
+        "pk": 3,
+        "fields": {
+            "burn_cause": "Domestic Violence",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burncause.BurnCause",
+        "pk": 4,
+        "fields": {
+            "burn_cause": "Other",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burncause.BurnCause",
+        "pk": 5,
+        "fields": {
+            "burn_cause": "Other",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    }
+]

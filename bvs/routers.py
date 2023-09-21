@@ -4,6 +4,7 @@ from bvs.auth.viewsets import (
     LoginViewSet,
     RefreshViewSet,
     LogoutViewSet,
+    PasswordChangeViewSet,
 )
 from bvs.user.viewsets import UserViewSet
 
@@ -26,6 +27,7 @@ router.register(r"auth/register", RegisterViewSet, basename="auth-register")
 router.register(r"auth/login", LoginViewSet, basename="auth-login")
 router.register(r"auth/refresh", RefreshViewSet, basename="auth-refresh")
 router.register(r"auth/logout", LogoutViewSet, basename="auth-logout")
+router.register(r"auth/password-change", PasswordChangeViewSet, basename="auth-password-change")
 
 router.register(r"user", UserViewSet, basename="user")
 
@@ -37,6 +39,10 @@ router.register(r"religion", ReligionViewSet, basename="religion")
 router.register(r"burn_type", BurnTypeViewSet, basename="burn_type")
 router.register(r"burn_cause", BurnCauseViewSet, basename="burn_cause")
 
+router.register(r"treatment", TreatmentViewSet, basename="patient-treatment")
+router.register(r"funding", FundingViewSet, basename="patient-funding")
+router.register(r"pshychosocial", PsychosocialViewSet, basename="pshychosocial-funding")
+router.register(r"physiotherapy", PhysiotherapyViewSet, basename="physiotherapy-funding")
 
 router.register(r"patient", PatientViewSet, basename="patient")
 patients_router = routers.NestedSimpleRouter(router, r"patient", PatientViewSet, lookup="patient")

@@ -1,0 +1,65 @@
+[
+    {
+        "model": "bvs_religion.Religion",
+        "pk": 1,
+        "fields": {
+            "religion": "Hindu",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_religion.Religion",
+        "pk": 2,
+        "fields": {
+            "religion": "Buddhist",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_religion.Religion",
+        "pk": 3,
+        "fields": {
+            "religion": "Muslim",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_religion.Religion",
+        "pk": 4,
+        "fields": {
+            "religion": "Kiratist(indigenous ethnic religion)",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_religion.Religion",
+        "pk": 5,
+        "fields": {
+            "religion": "Christian",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_religion.Religion",
+        "pk": 6,
+        "fields": {
+            "religion": "Sikhs",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_religion.Religion",
+        "pk": 7,
+        "fields": {
+            "religion": "Jains",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    }
+]

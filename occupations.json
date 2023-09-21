@@ -1,0 +1,92 @@
+[
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 1,
+        "fields": {
+            "occupation_name": "Farmer",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 2,
+        "fields": {
+            "occupation_name": "Teacher",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 3,
+        "fields": {
+            "occupation_name": "Construction worker",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 4,
+        "fields": {
+            "occupation_name": "Hotelier",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 5,
+        "fields": {
+            "occupation_name": "Government jobs",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 6,
+        "fields": {
+            "occupation_name": "Tour guide",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 7,
+        "fields": {
+            "occupation_name": "Retailer",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 8,
+        "fields": {
+            "occupation_name": "Healthcare Workers",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 9,
+        "fields": {
+            "occupation_name": "Businesses",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_occupation.Occupation",
+        "pk": 10,
+        "fields": {
+            "occupation_name": "House wife",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    }
+]

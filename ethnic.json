@@ -1,0 +1,47 @@
+[
+    {
+        "model": "bvs_ethnic.Ethnic",
+        "pk": 1,
+        "fields": {
+            "ethnic_group": "Brahman/Chhetri/Thakuri/Sanyasi(Dasnami) Hill",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_ethnic.Ethnic",
+        "pk": 2,
+        "fields": {
+            "ethnic_group": "Aadibasi/Janajati Hill",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_ethnic.Ethnic",
+        "pk": 3,
+        "fields": {
+            "ethnic_group": "Dalit Hill",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_ethnic.Ethnic",
+        "pk": 4,
+        "fields": {
+            "ethnic_group": "Backward Region",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_ethnic.Ethnic",
+        "pk": 5,
+        "fields": {
+            "ethnic_group": "Madhesi",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    }
+]

@@ -1,4 +1,5 @@
 from django.http.response import Http404
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -33,3 +34,8 @@ class PhysiotherapyViewSet(AbstractViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(detail=False)
+    def physiotherapy_count(self, request):
+        physiotherapy_count = Physiotherapy.objects.count()
+        return Response({'physiotherapy_count': physiotherapy_count})

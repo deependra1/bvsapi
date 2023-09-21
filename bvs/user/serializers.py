@@ -32,6 +32,7 @@ class UserSerializer(AbstractSerializer):
             "type",
             "avatar",
             "email",
+            "password",
             "is_active",
             "created",
             "updated",

@@ -24,7 +24,10 @@ SECRET_KEY = 'django-insecure-%!d^ujioyx2&sp+7(9sm*t%n^ma8raqdx%w1ddozviw!-d0*9c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # "http://localhost:8000",
+    # "http://127.0.0.1:8000"
+]
 
 # Application definition
 
@@ -56,6 +59,7 @@ INSTALLED_APPS = [
     'bvs.physiotherapy.apps.PhysiotherapyConfig',
     'bvs.burncause.apps.BurncauseConfig',
     'bvs.burntype.apps.BurntypeConfig',
+    'bvs.dashboard.apps.DashboardConfig',
 ]
 
 MIDDLEWARE = [

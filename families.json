@@ -1,0 +1,56 @@
+[
+    {
+        "model": "bvs_family.Family",
+        "pk": 1,
+        "fields": {
+            "family_type": "Nuclear families",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_family.Family",
+        "pk": 2,
+        "fields": {
+            "family_type": "Grandparent families",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_family.Family",
+        "pk": 3,
+        "fields": {
+            "family_type": "Single-parent families",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_family.Family",
+        "pk": 4,
+        "fields": {
+            "family_type": "Extended families",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_family.Family",
+        "pk": 5,
+        "fields": {
+            "family_type": "Childless families",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_family.Family",
+        "pk": 6,
+        "fields": {
+            "family_type": "Stepfamilies",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    }
+]

@@ -2,6 +2,7 @@ from django.http.response import Http404
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
 
 from bvs.abstract.viewsets import AbstractViewSet
 from bvs.treatment.models import Treatment
@@ -33,3 +34,8 @@ class TreatmentViewSet(AbstractViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(detail=False)
+    def treatments_count(self, request):
+        treatment_count = Treatment.objects.count()
+        return Response({'treatment_count': treatment_count})

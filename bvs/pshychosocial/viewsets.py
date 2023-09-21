@@ -1,4 +1,5 @@
 from django.http.response import Http404
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -33,3 +34,8 @@ class PsychosocialViewSet(AbstractViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(detail=False)
+    def pshychosocial_count(self, request):
+        pshychosocial_count = Psychosocial.objects.count()
+        return Response({'pshychosocial_count': pshychosocial_count})

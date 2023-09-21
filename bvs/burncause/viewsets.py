@@ -9,7 +9,7 @@ from bvs.burncause.serializers import BurnCauseSerializer
 
 class BurnCauseViewSet(AbstractViewSet):
     http_method_names = ("post", "get", "put", "delete")
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     serializer_class = BurnCauseSerializer
 
     def get_queryset(self):

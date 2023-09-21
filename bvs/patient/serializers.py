@@ -1,8 +1,15 @@
+from django.db.models import Sum
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from bvs.abstract.serializers import AbstractSerializer
+from bvs.funding.models import Funding
+from bvs.funding.serializers import FundingSerializer
 from bvs.patient.models import Patient
+from bvs.physiotherapy.models import Physiotherapy
+from bvs.physiotherapy.serializers import PhysiotherapySerializer
+from bvs.pshychosocial.models import Psychosocial
+from bvs.pshychosocial.serializers import PsychosocialSerializer
 
 from bvs.user.models import User
 from bvs.user.serializers import UserSerializer
@@ -25,9 +32,8 @@ from bvs.burncause.serializers import BurnCauseSerializer
 from bvs.burntype.models import BurnType
 from bvs.burntype.serializers import BurnTypeSerializer
 
-
-# from bvs.user.models import User
-# from bvs.user.serializers import UserSerializer
+from bvs.treatment.models import Treatment
+from bvs.treatment.serializers import TreatmentSerializer
 
 
 class PatientSerializer(AbstractSerializer):
@@ -83,8 +89,48 @@ class PatientSerializer(AbstractSerializer):
         burn_cause = BurnCause.objects.get_object_by_public_id(rep["burn_cause"])
         burn_type = BurnType.objects.get_object_by_public_id(rep["burn_type"])
 
-        rep["creator"] = UserSerializer(creator, context=self.context).data
+        # # Fetch and serialize related data for Treatment
+        # treatments = Treatment.objects.filter(patient=instance)
+        # treatment_data = TreatmentSerializer(treatments, many=True, context=self.context).data
+        # # Fetch and serialize related data for Funding
+        # fundings = Funding.objects.filter(patient=instance)
+        # funding_data = FundingSerializer(fundings, many=True, context=self.context).data
+        #
+        # # Fetch and serialize related data for Physiotherapy
+        # physiotherapies = Physiotherapy.objects.filter(patient=instance)
+        # physiotherapy_data = PhysiotherapySerializer(physiotherapies, many=True, context=self.context).data
+        #
+        # # Fetch and serialize related data for Psychosocial
+        # psychosocials = Psychosocial.objects.filter(patient=instance)
+        # psychosocial_data = PsychosocialSerializer(psychosocials, many=True, context=self.context).data
 
+        # Fetch the counts of related Treatment and Funding objects
+        treatment_count = Treatment.objects.filter(patient=instance).count()
+        funding_count = Funding.objects.filter(patient=instance).count()
+        physiotherapie_count = Physiotherapy.objects.filter(patient=instance).count()
+        psychosocials_count = Psychosocial.objects.filter(patient=instance).count()
+
+        # Fetch the sum of funding_amount from related Funding objects
+        funding_sum = Funding.objects.filter(patient=instance).aggregate(total_funding=Sum('funding_amount'))[
+            'total_funding']
+
+        surgery_sum = Treatment.objects.filter(patient=instance).aggregate(total_surgery=Sum('no_of_surgery'))[
+            'total_surgery']
+
+        skin_graft_sum = Treatment.objects.filter(patient=instance).aggregate(total_skin_graft=Sum('no_of_skin_graft'))[
+            'total_skin_graft']
+        debridement_sum = Treatment.objects.filter(patient=instance).aggregate(total_debridement=Sum('no_of_debridement'))[
+            'total_debridement']
+        amputation_sum = Treatment.objects.filter(patient=instance).aggregate(total_amputation=Sum('no_of_amputation'))[
+            'total_amputation']
+        dressing_sum = Treatment.objects.filter(patient=instance).aggregate(total_dressing=Sum('no_of_dressing'))[
+            'total_dressing']
+        nutritional_sum = Treatment.objects.filter(patient=instance).aggregate(total_nutritional=Sum('no_of_nutritional'))[
+            'total_nutritional']
+        medical_support_sum = Treatment.objects.filter(patient=instance).aggregate(total_medical_support=Sum('medical_support'))[
+            'total_medical_support']
+
+        rep["creator"] = UserSerializer(creator, context=self.context).data
         rep["patient_occupation"] = OccupationSerializer(patient_occupation, context=self.context).data
         rep["suppose_occupation"] = OccupationSerializer(suppose_occupation, context=self.context).data
         rep["parents_occupation"] = OccupationSerializer(parents_occupation, context=self.context).data
@@ -95,6 +141,28 @@ class PatientSerializer(AbstractSerializer):
 
         rep["burn_cause"] = BurnCauseSerializer(burn_cause, context=self.context).data
         rep["burn_type"] = BurnTypeSerializer(burn_type, context=self.context).data
+
+        # Add the related data to the representation
+        # rep['treatment'] = treatment_data
+        # rep['funding'] = funding_data
+        # rep['physiotherapy'] = physiotherapy_data
+        # rep['psychosocial'] = psychosocial_data
+
+        # Add the counts to the representation
+        rep['treatment_count'] = treatment_count
+        rep['funding_count'] = funding_count
+        rep['physiotherapie_count'] = physiotherapie_count
+        rep['psychosocials_count'] = psychosocials_count
+
+        # Add the funding sum to the representation
+        rep['total_funding'] = funding_sum or 0
+        rep['total_surgery'] = surgery_sum or 0
+        rep['total_skin_graft'] = skin_graft_sum or 0
+        rep['total_debridement'] = debridement_sum or 0
+        rep['total_amputation'] = amputation_sum or 0
+        rep['total_dressing'] = dressing_sum or 0
+        rep['total_nutritional'] = nutritional_sum or 0
+        rep['total_medical_support'] = medical_support_sum or 0
 
         return rep
 

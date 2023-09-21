@@ -65,6 +65,7 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
     EMAIL_FIELD = "email"
+    REQUIRED_FIELDS = []
 
     objects = UserManager()
 

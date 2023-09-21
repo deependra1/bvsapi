@@ -1,0 +1,83 @@
+[
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 1,
+        "fields": {
+            "burn_type": "Flame Burn",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 2,
+        "fields": {
+            "burn_type": "Scald Burn",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 3,
+        "fields": {
+            "burn_type": "Post Burn",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 4,
+        "fields": {
+            "burn_type": "Chemical Burn",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 5,
+        "fields": {
+            "burn_type": "Electrocution",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 6,
+        "fields": {
+            "burn_type": "Contact Burn",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 7,
+        "fields": {
+            "burn_type": "Lightening",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 8,
+        "fields": {
+            "burn_type": "Mixed",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    },
+    {
+        "model": "bvs_burntype.BurnType",
+        "pk": 9,
+        "fields": {
+            "burn_type": "Other",
+            "created": "2023-09-13",
+            "updated": "2023-09-13"
+        }
+    }
+]

@@ -1,18 +1,8 @@
-from django.core.cache import cache
 from django.db import models
 import uuid
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
-
-
-# def _delete_cached_objects(app_label):
-#     if app_label == "bvs_patient":
-#         cache.delete("patient_objects")
-#     elif app_label == "bvs_treatment":
-#         cache.delete("treatment_objects")
-#     else:
-#         raise NotImplementedError
 
 
 class AbstractManager(models.Manager):
@@ -36,21 +26,3 @@ class AbstractModel(models.Model):
     class Meta:
         abstract = True
 
-    # def save(
-    #     self, force_insert=False, force_update=False, using=None, update_fields=None
-    # ):
-    #     app_label = self._meta.app_label
-    #     if app_label in ["bvs_patient", "bvs_treatment"]:
-    #         _delete_cached_objects(app_label)
-    #     return super(AbstractModel, self).save(
-    #         force_insert=force_insert,
-    #         force_update=force_update,
-    #         using=using,
-    #         update_fields=update_fields,
-    #     )
-    #
-    # def delete(self, using=None, keep_parents=False):
-    #     app_label = self._meta.app_label
-    #     if app_label in ["bvs_patient", "bvs_treatment"]:
-    #         _delete_cached_objects(app_label)
-    #     return super(AbstractModel, self).delete(using=using, keep_parents=keep_parents)
