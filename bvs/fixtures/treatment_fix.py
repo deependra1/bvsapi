@@ -59,6 +59,23 @@ for _ in range(500):
     }
     fundings.append(funding)
 
+# Generate 1000 Funding fixtures
+reintegrations = []
+for _ in range(500):
+    reintegration = {
+        "model": "bvs_reintegration.Reintegration",
+        "pk": _ + 1,
+        "fields": {
+            "patient": random.randint(1, 100),
+            "question": random.randint(1, 15),
+            "answer": fake.sentence(),
+            "created": datetime.now().strftime("%Y-%m-%d"),
+            "updated": datetime.now().strftime("%Y-%m-%d")
+
+        }
+    }
+    reintegrations.append(reintegration)
+
 # Generate 1000 Physiotherapy fixtures
 physiotherapies = []
 for _ in range(500):
@@ -102,6 +119,8 @@ for _ in range(500):
     }
     psychosocials.append(psychosocial)
 
+
+
 with open("treatments.json", "w") as treatment_file:
     json.dump(treatments, treatment_file, indent=4)
 
@@ -113,3 +132,6 @@ with open("physiotherapies.json", "w") as physiotherapy_file:
 
 with open("psychosocials.json", "w") as psychosocial_file:
     json.dump(psychosocials, psychosocial_file, indent=4)
+
+with open("reintegrations.json", "w") as reintegration_file:
+    json.dump(reintegrations, reintegration_file, indent=4)

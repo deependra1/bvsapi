@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'bvs.burncause.apps.BurncauseConfig',
     'bvs.burntype.apps.BurntypeConfig',
     'bvs.dashboard.apps.DashboardConfig',
+    'bvs.question.apps.QuestionConfig',
+    'bvs.reintegration.apps.ReintegrationConfig',
 ]
 
 MIDDLEWARE = [
@@ -162,6 +164,15 @@ REST_FRAMEWORK = {
 
 }
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_REFRESH_AFTER_INACTIVITY': timedelta(days=7),
+    'SLIDING_TOKEN_REFRESH_SLIDING_WINDOW': timedelta(days=2),
+    'SLIDING_TOKEN_REFRESH_ON_LOGIN': True,
+}
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000"
@@ -174,3 +185,16 @@ MEDIA_ROOT = BASE_DIR / "uploads"
 # Default avatar URL
 
 DEFAULT_AVATAR_URL = "https://avatars.dicebear.com/api/identicon/.svg"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'mail.bvsnepal.org'
+# EMAIL_PORT = 465
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'admin@bvsnepal.org'
+# EMAIL_HOST_PASSWORD = '@dminBvs'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'rythm.dipen@gmail.com'
+EMAIL_HOST_PASSWORD = 'xlwq cize tnri bvin'

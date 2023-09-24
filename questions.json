@@ -1,0 +1,137 @@
+[
+    {
+        "model": "bvs_question.Question",
+        "pk": 1,
+        "fields": {
+            "questionnaire": "What is the current health status of the patient?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 2,
+        "fields": {
+            "questionnaire": "Has the doctor scheduled any follow up visits or medical treatment?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 3,
+        "fields": {
+            "questionnaire": "Have you beeb exercising as per the physiotherapist's advice? Do you find it beneficial?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 4,
+        "fields": {
+            "questionnaire": "Have you faced any kind of difficulty in daily life activities of dependent on family for basic chores?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 5,
+        "fields": {
+            "questionnaire": "Social treatment post burn support/view?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 6,
+        "fields": {
+            "questionnaire": "How supportive is the family?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 7,
+        "fields": {
+            "questionnaire": "What was your means of livelihood in any economic generating activity?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 8,
+        "fields": {
+            "questionnaire": "If you are involved, have you faced any challenges? Workplace treatment?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 9,
+        "fields": {
+            "questionnaire": "Ask if the patient is interested in any training or area of interest or support? Yes/No",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 10,
+        "fields": {
+            "questionnaire": "Is the child reluctant to go to school? or Effect on child's education after incident",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 11,
+        "fields": {
+            "questionnaire": "How well has s/he adjust with their friends?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 12,
+        "fields": {
+            "questionnaire": "Can the child independently function or is dependent on the family of basic chores?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 13,
+        "fields": {
+            "questionnaire": "Societal perception towards the child?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 14,
+        "fields": {
+            "questionnaire": "If the child is disabled, what are the problems faced by the patient?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    },
+    {
+        "model": "bvs_question.Question",
+        "pk": 15,
+        "fields": {
+            "questionnaire": "What kind of changes have you noticed on your child pre/post incident or BVSN's intervention?",
+            "created": "2023-09-24",
+            "updated": "2023-09-24"
+        }
+    }
+]

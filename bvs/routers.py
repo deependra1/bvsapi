@@ -5,7 +5,9 @@ from bvs.auth.viewsets import (
     RefreshViewSet,
     LogoutViewSet,
     PasswordChangeViewSet,
+    ForgotPasswordViewSet,
 )
+
 from bvs.user.viewsets import UserViewSet
 
 from bvs.patient.viewsets import PatientViewSet
@@ -20,6 +22,8 @@ from bvs.pshychosocial.viewsets import PsychosocialViewSet
 from bvs.physiotherapy.viewsets import PhysiotherapyViewSet
 from bvs.burntype.viewsets import BurnTypeViewSet
 from bvs.burncause.viewsets import BurnCauseViewSet
+from bvs.question.viewsets import QuestionViewSet
+from bvs.reintegration.viewsets import ReintegrationViewSet
 
 router = routers.SimpleRouter()
 
@@ -28,6 +32,8 @@ router.register(r"auth/login", LoginViewSet, basename="auth-login")
 router.register(r"auth/refresh", RefreshViewSet, basename="auth-refresh")
 router.register(r"auth/logout", LogoutViewSet, basename="auth-logout")
 router.register(r"auth/password-change", PasswordChangeViewSet, basename="auth-password-change")
+router.register(r'auth/forgot-password', ForgotPasswordViewSet, basename='auth-forgot-password')
+router.register(r'auth/password-reset-confirm', ForgotPasswordViewSet, basename='auth-password-reset-confirm')
 
 router.register(r"user", UserViewSet, basename="user")
 
@@ -38,6 +44,7 @@ router.register(r"family", FamilyViewSet, basename="family")
 router.register(r"religion", ReligionViewSet, basename="religion")
 router.register(r"burn_type", BurnTypeViewSet, basename="burn_type")
 router.register(r"burn_cause", BurnCauseViewSet, basename="burn_cause")
+router.register(r"question", QuestionViewSet, basename="question")
 
 router.register(r"treatment", TreatmentViewSet, basename="patient-treatment")
 router.register(r"funding", FundingViewSet, basename="patient-funding")
@@ -50,5 +57,6 @@ patients_router.register(r"treatment", TreatmentViewSet, basename="patient-treat
 patients_router.register(r"funding", FundingViewSet, basename="patient-funding")
 patients_router.register(r"pshychosocial", PsychosocialViewSet, basename="pshychosocial-funding")
 patients_router.register(r"physiotherapy", PhysiotherapyViewSet, basename="physiotherapy-funding")
+patients_router.register(r"reintegration", ReintegrationViewSet, basename="patient-reintegration")
 
 urlpatterns = [*router.urls, *patients_router.urls]
