@@ -9,7 +9,7 @@ class DonorManager(AbstractManager):
 
 class Donor(AbstractModel):
     donor_name = models.CharField(max_length=50, null=True)
-    donor_address = models.CharField(max_length=100, null=True)
+    donor_address = models.CharField(max_length=100, null=True, blank=True)
 
     objects = DonorManager()
 

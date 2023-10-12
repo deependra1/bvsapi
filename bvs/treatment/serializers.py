@@ -44,6 +44,7 @@ class TreatmentSerializer(AbstractSerializer):
             "expired_date",
             "mode_of_transport",
             "distance",
+            "time",
             "duration_of_stay",
             "no_of_surgery",
             "no_of_skin_graft",
@@ -52,6 +53,7 @@ class TreatmentSerializer(AbstractSerializer):
             "no_of_dressing",
             "no_of_nutritional",
             "medical_support",
+            "is_post_treatment",
             "created",
             "updated",
         ]

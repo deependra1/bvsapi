@@ -1,10 +1,12 @@
-from django.db.models import Count
+from django.db.models import Count, Q
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework import status
 from rest_framework.decorators import action
 from django.core.cache import cache
 
+from rest_framework.filters import SearchFilter
+from rest_framework import filters
 from bvs.abstract.viewsets import AbstractViewSet
 from bvs.patient.models import Patient
 from bvs.patient.serializers import PatientSerializer
@@ -15,10 +17,28 @@ class PatientViewSet(AbstractViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = PatientSerializer
 
+    filter_backends = [filters.SearchFilter]
+    search_fields = [
+        'registration_date',
+        'fiscal_year',
+        'registration_location',
+        'registration_number',
+        'fname',
+        'lname',
+        'mname',
+    ]
+
     # filterset_fields = ["author__public_id"]
 
     def get_queryset(self):
-        return Patient.objects.all().order_by('-created')
+        user_location = self.request.user.location
+
+        queryset = Patient.objects.all().order_by('-created')
+
+        if user_location:
+            queryset = queryset.filter(Q(registration_location=user_location))
+
+        return queryset
 
     def get_object(self):
         obj = Patient.objects.get_object_by_public_id(self.kwargs["pk"])
@@ -41,6 +61,12 @@ class PatientViewSet(AbstractViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(detail=False, methods=['GET'])
+    def get_latest(self, request):
+        latest = self.get_queryset()[:10]
+        serializer = self.get_serializer(latest, many=True)
+        return Response(serializer.data)
 
     @action(detail=False)
     def patients_count(self, request):
@@ -86,3 +112,8 @@ class PatientViewSet(AbstractViewSet):
 
         return Response(fiscal_year_counts_list)
 
+    @action(detail=False, methods=['GET'])
+    def post_treatment_patients(self, request):
+        post_treatment_patients = self.get_queryset().filter(treatment__is_post_treatment=True)
+        serializer = self.get_serializer(post_treatment_patients, many=True)
+        return Response(serializer.data)

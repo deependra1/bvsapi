@@ -59,8 +59,8 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
 
-    location = models.CharField(max_length=3, null=True)
-    type = models.CharField(max_length=5, null=True)
+    location = models.CharField(max_length=3, null=True, blank=True)
+    type = models.CharField(max_length=10, null=True, blank=True)
     avatar = models.ImageField(null=True, blank=True, upload_to=user_directory_path)
 
     USERNAME_FIELD = "email"

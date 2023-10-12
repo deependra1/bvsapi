@@ -89,9 +89,9 @@ class PatientSerializer(AbstractSerializer):
         burn_cause = BurnCause.objects.get_object_by_public_id(rep["burn_cause"])
         burn_type = BurnType.objects.get_object_by_public_id(rep["burn_type"])
 
-        # # Fetch and serialize related data for Treatment
-        # treatments = Treatment.objects.filter(patient=instance)
-        # treatment_data = TreatmentSerializer(treatments, many=True, context=self.context).data
+        # Fetch and serialize related data for Treatment
+        treatments = Treatment.objects.filter(patient=instance)
+        treatment_data = TreatmentSerializer(treatments, many=True, context=self.context).data
         # # Fetch and serialize related data for Funding
         # fundings = Funding.objects.filter(patient=instance)
         # funding_data = FundingSerializer(fundings, many=True, context=self.context).data
@@ -143,7 +143,7 @@ class PatientSerializer(AbstractSerializer):
         rep["burn_type"] = BurnTypeSerializer(burn_type, context=self.context).data
 
         # Add the related data to the representation
-        # rep['treatment'] = treatment_data
+        rep['treatment'] = treatment_data
         # rep['funding'] = funding_data
         # rep['physiotherapy'] = physiotherapy_data
         # rep['psychosocial'] = psychosocial_data
@@ -196,6 +196,8 @@ class PatientSerializer(AbstractSerializer):
             "date_of_birth",
             "age_at_incident",
             "month_at_incident",
+            "day_at_incident",
+            "age_group",
             "gender",
             "citizenship_no",
             "patient_contact",

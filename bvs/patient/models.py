@@ -34,9 +34,11 @@ class Patient(AbstractModel):
     tole2 = models.CharField(max_length=150, null=True, blank=True)
     foreign_address2 = models.CharField(max_length=255, null=True, blank=True)
 
-    date_of_birth = models.DateField(null=True)
+    date_of_birth = models.DateTimeField(null=True, blank=True)
     age_at_incident = models.IntegerField(null=True, blank=True)
     month_at_incident = models.IntegerField(null=True, blank=True)
+    day_at_incident = models.IntegerField(null=True, blank=True)
+    age_group = models.CharField(max_length=20, null=True, blank=True)
     gender = models.CharField(max_length=20, null=True, blank=True)
     citizenship_no = models.CharField(max_length=50, null=True, blank=True)
     patient_contact = models.CharField(max_length=15, null=True, blank=True)

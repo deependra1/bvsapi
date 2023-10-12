@@ -39,3 +39,5 @@ class TreatmentViewSet(AbstractViewSet):
     def treatments_count(self, request):
         treatment_count = Treatment.objects.count()
         return Response({'treatment_count': treatment_count})
+
+

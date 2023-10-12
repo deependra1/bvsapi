@@ -12,6 +12,8 @@ class Treatment(AbstractModel):
     # for transport
     mode_of_transport = models.CharField(max_length=50, null=True)
     distance = models.IntegerField(null=True, blank=True)
+    time = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+
     duration_of_stay = models.IntegerField(null=True, blank=True)
 
     hospital = models.CharField(max_length=200, null=True, blank=True)
@@ -28,6 +30,7 @@ class Treatment(AbstractModel):
     no_of_dressing = models.IntegerField(null=True, blank=True)
     no_of_nutritional = models.IntegerField(null=True, blank=True)
     medical_support = models.IntegerField(null=True, blank=True)
+    is_post_treatment = models.BooleanField(null=True)
 
     objects = TreatmentManager()
 
