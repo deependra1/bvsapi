@@ -40,3 +40,9 @@ class FundingViewSet(AbstractViewSet):
     def fundings_count(self, request):
         funding_count = Funding.objects.count()
         return Response({'funding_count': funding_count})
+
+    @action(detail=False, methods=['get'])
+    def pivoted_funding(self, request):
+        pivoted_data = Funding.objects.values('donor').annotate(total_amount=Sum('funding_amount'))
+
+        return Response({'pivoted_data': pivoted_data})

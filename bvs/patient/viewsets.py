@@ -112,6 +112,12 @@ class PatientViewSet(AbstractViewSet):
 
         return Response(fiscal_year_counts_list)
 
+    # @action(detail=False, methods=['GET'])
+    # def regular_treatment_patients(self, request):
+    #     post_treatment_patients = self.get_queryset().filter(treatment__is_post_treatment__isnull=True)
+    #     serializer = self.get_serializer(post_treatment_patients, many=True)
+    #     return Response(serializer.data)
+
     @action(detail=False, methods=['GET'])
     def post_treatment_patients(self, request):
         post_treatment_patients = self.get_queryset().filter(treatment__is_post_treatment=True)

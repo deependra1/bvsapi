@@ -1,8 +1,12 @@
+from collections import OrderedDict
+
 from django.db.models import Sum
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from bvs.abstract.serializers import AbstractSerializer
+from bvs.donor.models import Donor
+from bvs.donor.serializers import DonorSerializer
 from bvs.funding.models import Funding
 from bvs.funding.serializers import FundingSerializer
 from bvs.patient.models import Patient
@@ -10,6 +14,8 @@ from bvs.physiotherapy.models import Physiotherapy
 from bvs.physiotherapy.serializers import PhysiotherapySerializer
 from bvs.pshychosocial.models import Psychosocial
 from bvs.pshychosocial.serializers import PsychosocialSerializer
+from bvs.reintegration.models import Reintegration
+from bvs.reintegration.serializers import ReintegrationSerializer
 
 from bvs.user.models import User
 from bvs.user.serializers import UserSerializer
@@ -92,17 +98,21 @@ class PatientSerializer(AbstractSerializer):
         # Fetch and serialize related data for Treatment
         treatments = Treatment.objects.filter(patient=instance)
         treatment_data = TreatmentSerializer(treatments, many=True, context=self.context).data
-        # # Fetch and serialize related data for Funding
-        # fundings = Funding.objects.filter(patient=instance)
-        # funding_data = FundingSerializer(fundings, many=True, context=self.context).data
-        #
-        # # Fetch and serialize related data for Physiotherapy
-        # physiotherapies = Physiotherapy.objects.filter(patient=instance)
-        # physiotherapy_data = PhysiotherapySerializer(physiotherapies, many=True, context=self.context).data
-        #
-        # # Fetch and serialize related data for Psychosocial
-        # psychosocials = Psychosocial.objects.filter(patient=instance)
-        # psychosocial_data = PsychosocialSerializer(psychosocials, many=True, context=self.context).data
+        # Fetch and serialize related data for Funding
+        fundings = Funding.objects.filter(patient=instance)
+        funding_data = FundingSerializer(fundings, many=True, context=self.context).data
+
+        # Fetch and serialize related data for Physiotherapy
+        physiotherapies = Physiotherapy.objects.filter(patient=instance)
+        physiotherapy_data = PhysiotherapySerializer(physiotherapies, many=True, context=self.context).data
+
+        # Fetch and serialize related data for Psychosocial
+        psychosocials = Psychosocial.objects.filter(patient=instance)
+        psychosocial_data = PsychosocialSerializer(psychosocials, many=True, context=self.context).data
+
+        # Fetch and serialize related data for reintegrations
+        reintegrations = Reintegration.objects.filter(patient=instance)
+        reintegration_data = ReintegrationSerializer(reintegrations, many=True, context=self.context).data
 
         # Fetch the counts of related Treatment and Funding objects
         treatment_count = Treatment.objects.filter(patient=instance).count()
@@ -144,9 +154,10 @@ class PatientSerializer(AbstractSerializer):
 
         # Add the related data to the representation
         rep['treatment'] = treatment_data
-        # rep['funding'] = funding_data
-        # rep['physiotherapy'] = physiotherapy_data
-        # rep['psychosocial'] = psychosocial_data
+        rep['funding'] = funding_data
+        rep['physiotherapy'] = physiotherapy_data
+        rep['psychosocial'] = psychosocial_data
+        # rep['reintegration'] = reintegration_data
 
         # Add the counts to the representation
         rep['treatment_count'] = treatment_count
@@ -163,6 +174,27 @@ class PatientSerializer(AbstractSerializer):
         rep['total_dressing'] = dressing_sum or 0
         rep['total_nutritional'] = nutritional_sum or 0
         rep['total_medical_support'] = medical_support_sum or 0
+
+        # Pivot funding_data by doner_name
+        funding_data_pivoted = {}
+
+        for funding_entry in funding_data:
+            donor_name = funding_entry.get('donor', {}).get('donor_name', 'null')
+            funding_amount = float(funding_entry.get('funding_amount', 0))  # Convert to float if it's a string
+            if donor_name not in funding_data_pivoted:
+                funding_data_pivoted[donor_name] = 0
+            funding_data_pivoted[donor_name] += funding_amount
+
+        rep['funding_piv'] = funding_data_pivoted
+
+        # Pivot question with answer
+        pivoted_data = OrderedDict()
+        for reintegration in reintegration_data:
+            question = reintegration['question']['questionnaire']
+            answer = reintegration['answer']
+            pivoted_data[question] = answer
+
+        rep['reintegration'] = pivoted_data
 
         return rep
 
