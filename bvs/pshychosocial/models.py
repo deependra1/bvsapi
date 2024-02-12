@@ -10,14 +10,15 @@ class PsychosocialManager(AbstractManager):
 class Psychosocial(AbstractModel):
     patient = models.ForeignKey("bvs_patient.Patient", on_delete=models.CASCADE)
 
-    client_history = models.TextField(null=True)
-    client_complain = models.TextField(null=True)
-    intervention = models.TextField(null=True)
-    changes_after_intervention = models.TextField(null=True)
-    detailed_followup_report = models.TextField(null=True)
-    followup_summary = models.TextField(null=True)
-    mode_of_followup = models.TextField(null=True)
-    followed_by = models.CharField(max_length=100, null=True)
+    client_history = models.TextField(null=True, blank=True)
+    client_complain = models.TextField(null=True, blank=True)
+    intervention = models.TextField(null=True, blank=True)
+    changes_after_intervention = models.TextField(null=True, blank=True)
+    detailed_followup_report = models.TextField(null=True, blank=True)
+    followup_summary = models.ForeignKey(to="bvs_followUpSummary.FollowUpSummary", on_delete=models.CASCADE, null=True, blank=True)
+    mode_of_followup = models.TextField(null=True, blank=True)
+    followed_by = models.CharField(max_length=100, null=True, blank=True)
+    number_of_counseling = models.IntegerField(null=True, blank=True)
 
     objects = PsychosocialManager()
 

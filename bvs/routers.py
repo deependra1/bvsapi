@@ -7,6 +7,7 @@ from bvs.auth.viewsets import (
     PasswordChangeViewSet,
     ForgotPasswordViewSet,
 )
+from bvs.followUpSummary.viewsets import FollowUpSummaryViewSet
 
 from bvs.user.viewsets import UserViewSet
 
@@ -24,6 +25,10 @@ from bvs.burntype.viewsets import BurnTypeViewSet
 from bvs.burncause.viewsets import BurnCauseViewSet
 from bvs.question.viewsets import QuestionViewSet
 from bvs.reintegration.viewsets import ReintegrationViewSet
+from bvs.hospital.viewsets import HospitalViewSet
+from bvs.educationlevel.viewsets import EducationLevelViewSet
+from bvs.language.viewsets import LanguageViewSet
+
 
 router = routers.SimpleRouter()
 
@@ -45,6 +50,10 @@ router.register(r"religion", ReligionViewSet, basename="religion")
 router.register(r"burn_type", BurnTypeViewSet, basename="burn_type")
 router.register(r"burn_cause", BurnCauseViewSet, basename="burn_cause")
 router.register(r"question", QuestionViewSet, basename="question")
+router.register(r"hospital", HospitalViewSet, basename="hospital")
+router.register(r"educationlevel", EducationLevelViewSet, basename="educationlevel")
+router.register(r"language", LanguageViewSet, basename="language")
+router.register(r"follow-up-summary", FollowUpSummaryViewSet, basename="follow-up-summary")
 
 router.register(r"treatment", TreatmentViewSet, basename="patient-treatment")
 router.register(r"funding", FundingViewSet, basename="patient-funding")

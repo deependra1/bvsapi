@@ -44,8 +44,8 @@ class Patient(AbstractModel):
     patient_contact = models.CharField(max_length=15, null=True, blank=True)
     optional_contact = models.CharField(max_length=15, null=True, blank=True)
     parents_contact = models.CharField(max_length=15, null=True, blank=True)
-    patient_education = models.CharField(max_length=50, null=True, blank=True)
-    patient_language = models.CharField(max_length=50, null=True, blank=True)
+    patient_education = models.ForeignKey(to="bvs_educationlevel.EducationLevel", on_delete=models.CASCADE, null=True, blank=True)
+    patient_language = models.ForeignKey(to="bvs_language.Language", on_delete=models.CASCADE, null=True, blank=True)
 
     patient_occupation = models.ForeignKey(to="bvs_occupation.Occupation", related_name='patient_occupation',
                                            on_delete=models.CASCADE, null=True, blank=True)
@@ -72,9 +72,10 @@ class Patient(AbstractModel):
     epilepsy = models.BooleanField(null=True)
     hiv_positive = models.BooleanField(null=True)
 
-    date_of_incident = models.DateTimeField(null=True)
+    date_of_incident = models.DateTimeField(null=True, blank=True)
     area_of_burn = models.CharField(max_length=50, null=True, blank=True)
     percentage_of_burn = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    group_of_percentage = models.CharField(max_length=50, null=True, blank=True)
     degree_of_burn = models.CharField(max_length=50, null=True, blank=True)
 
     burn_cause = models.ForeignKey(to="bvs_burncause.BurnCause", on_delete=models.CASCADE, null=True, blank=True)

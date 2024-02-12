@@ -41,6 +41,12 @@ from bvs.burntype.serializers import BurnTypeSerializer
 from bvs.treatment.models import Treatment
 from bvs.treatment.serializers import TreatmentSerializer
 
+from bvs.educationlevel.models import EducationLevel
+from bvs.educationlevel.serializers import EducationLevelSerializer
+
+from bvs.language.models import Language
+from bvs.language.serializers import LanguageSerializer
+
 
 class PatientSerializer(AbstractSerializer):
     creator = serializers.SlugRelatedField(
@@ -57,6 +63,14 @@ class PatientSerializer(AbstractSerializer):
 
     parents_occupation = serializers.SlugRelatedField(
         queryset=Occupation.objects.all(), slug_field="public_id"
+    )
+
+    patient_education = serializers.SlugRelatedField(
+         queryset=EducationLevel.objects.all(), slug_field="public_id"
+    )
+
+    patient_language = serializers.SlugRelatedField(
+         queryset=Language.objects.all(), slug_field="public_id"
     )
 
     ethnic_group = serializers.SlugRelatedField(
@@ -87,6 +101,9 @@ class PatientSerializer(AbstractSerializer):
         patient_occupation = Occupation.objects.get_object_by_public_id(rep["patient_occupation"])
         suppose_occupation = Occupation.objects.get_object_by_public_id(rep["suppose_occupation"])
         parents_occupation = Occupation.objects.get_object_by_public_id(rep["parents_occupation"])
+
+        patient_education = EducationLevel.objects.get_object_by_public_id(rep["patient_education"])
+        patient_language = Language.objects.get_object_by_public_id(rep["patient_language"])
 
         ethnic_group = Ethnic.objects.get_object_by_public_id(rep["ethnic_group"])
         religion = Religion.objects.get_object_by_public_id(rep["religion"])
@@ -144,6 +161,9 @@ class PatientSerializer(AbstractSerializer):
         rep["patient_occupation"] = OccupationSerializer(patient_occupation, context=self.context).data
         rep["suppose_occupation"] = OccupationSerializer(suppose_occupation, context=self.context).data
         rep["parents_occupation"] = OccupationSerializer(parents_occupation, context=self.context).data
+
+        rep["patient_education"] = EducationLevelSerializer(patient_education, context=self.context).data
+        rep["patient_language"] = LanguageSerializer(patient_language, context=self.context).data
 
         rep["ethnic_group"] = EthnicSerializer(ethnic_group, context=self.context).data
         rep["religion"] = ReligionSerializer(religion, context=self.context).data
@@ -258,6 +278,7 @@ class PatientSerializer(AbstractSerializer):
             "date_of_incident",
             "area_of_burn",
             "percentage_of_burn",
+            "group_of_percentage",
             "degree_of_burn",
             "burn_cause",
             "burn_type",

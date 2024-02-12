@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     'bvs.donor.apps.DonorConfig',
     'bvs.occupation.apps.OccupationConfig',
     'bvs.ethnic.apps.EthnicConfig',
+    'bvs.hospital.apps.HospitalConfig',
+    'bvs.language.apps.LanguageConfig',
+    'bvs.educationlevel.apps.EducationlevelConfig',
     'bvs.religion.apps.ReligionConfig',
     'bvs.family.apps.FamilyConfig',
     'bvs.funding.apps.FundingConfig',
@@ -62,6 +65,7 @@ INSTALLED_APPS = [
     'bvs.dashboard.apps.DashboardConfig',
     'bvs.question.apps.QuestionConfig',
     'bvs.reintegration.apps.ReintegrationConfig',
+    'bvs.followUpSummary.apps.FollowupsummaryConfig',
 ]
 
 MIDDLEWARE = [

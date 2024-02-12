@@ -25,7 +25,7 @@ class ForgotPasswordViewSet(viewsets.ViewSet):
             token = default_token_generator.make_token(user)
             uid = user.public_id
 
-            reset_url = f'http://localhost:3000/reset-password/{uid}/{token}/'
+            reset_url = f'https://apps.bvsnepal.org/reset-password/{uid}/{token}/'
 
             subject = 'Password Reset'
             message = f'Click the following link to reset your password: {reset_url}'

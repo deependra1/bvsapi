@@ -1,25 +1,21 @@
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 
 from bvs.abstract.serializers import AbstractSerializer
-# from bvs.user.models import User
-# from bvs.user.serializers import UserSerializer
 from bvs.treatment.models import Treatment
 from bvs.patient.models import Patient
+from bvs.hospital.models import Hospital
+from bvs.hospital.serializers import HospitalSerializer
+from datetime import datetime, date
 
 
 class TreatmentSerializer(AbstractSerializer):
-    # author = serializers.SlugRelatedField(
-    #     queryset=User.objects.all(), slug_field="public_id"
-    # )
     patient = serializers.SlugRelatedField(
         queryset=Patient.objects.all(), slug_field="public_id"
     )
 
-    # def validate_author(self, value):
-    #     if self.context["request"].user != value:
-    #         raise ValidationError("You can't create a post for another user.")
-    #     return value
+    hospital = serializers.SlugRelatedField(
+        queryset=Hospital.objects.all(), slug_field="public_id"
+    )
 
     def validate_patient(self, value):
         if self.instance:
@@ -31,9 +27,15 @@ class TreatmentSerializer(AbstractSerializer):
 
         return instance
 
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        hospital = Hospital.objects.get_object_by_public_id(rep["hospital"])
+        rep["hospital"] = HospitalSerializer(hospital, context=self.context).data
+
+        return rep
+
     class Meta:
         model = Treatment
-        # List of all the fields that can be included in a request or a response
         fields = [
             "id",
             "patient",
@@ -57,4 +59,3 @@ class TreatmentSerializer(AbstractSerializer):
             "created",
             "updated",
         ]
-

@@ -16,7 +16,7 @@ class Treatment(AbstractModel):
 
     duration_of_stay = models.IntegerField(null=True, blank=True)
 
-    hospital = models.CharField(max_length=200, null=True, blank=True)
+    hospital = models.ForeignKey(to="bvs_hospital.Hospital", on_delete=models.CASCADE, null=True, blank=True)
     hospitalized_date = models.DateTimeField(null=True, blank=True)
     doctor_name = models.CharField(max_length=150, null=True, blank=True)
     dischared_date = models.DateTimeField(null=True, blank=True)
