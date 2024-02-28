@@ -8,7 +8,7 @@ class FamilyManager(AbstractManager):
 
 
 class Family(AbstractModel):
-    family_type = models.CharField(max_length=50, null=True)
+    family_type = models.CharField(max_length=255, null=True)
 
     objects = FamilyManager()
 

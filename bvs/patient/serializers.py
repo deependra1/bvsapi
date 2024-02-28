@@ -66,11 +66,11 @@ class PatientSerializer(AbstractSerializer):
     )
 
     patient_education = serializers.SlugRelatedField(
-         queryset=EducationLevel.objects.all(), slug_field="public_id"
+        queryset=EducationLevel.objects.all(), slug_field="public_id"
     )
 
     patient_language = serializers.SlugRelatedField(
-         queryset=Language.objects.all(), slug_field="public_id"
+        queryset=Language.objects.all(), slug_field="public_id", many=True, required=False
     )
 
     ethnic_group = serializers.SlugRelatedField(
@@ -103,7 +103,10 @@ class PatientSerializer(AbstractSerializer):
         parents_occupation = Occupation.objects.get_object_by_public_id(rep["parents_occupation"])
 
         patient_education = EducationLevel.objects.get_object_by_public_id(rep["patient_education"])
-        patient_language = Language.objects.get_object_by_public_id(rep["patient_language"])
+
+        # patient_language = Language.objects.get_object_by_public_id(rep["patient_language"])
+
+        patient_language = rep.get("patient_language", [])
 
         ethnic_group = Ethnic.objects.get_object_by_public_id(rep["ethnic_group"])
         religion = Religion.objects.get_object_by_public_id(rep["religion"])
@@ -146,16 +149,19 @@ class PatientSerializer(AbstractSerializer):
 
         skin_graft_sum = Treatment.objects.filter(patient=instance).aggregate(total_skin_graft=Sum('no_of_skin_graft'))[
             'total_skin_graft']
-        debridement_sum = Treatment.objects.filter(patient=instance).aggregate(total_debridement=Sum('no_of_debridement'))[
-            'total_debridement']
+        debridement_sum = \
+            Treatment.objects.filter(patient=instance).aggregate(total_debridement=Sum('no_of_debridement'))[
+                'total_debridement']
         amputation_sum = Treatment.objects.filter(patient=instance).aggregate(total_amputation=Sum('no_of_amputation'))[
             'total_amputation']
         dressing_sum = Treatment.objects.filter(patient=instance).aggregate(total_dressing=Sum('no_of_dressing'))[
             'total_dressing']
-        nutritional_sum = Treatment.objects.filter(patient=instance).aggregate(total_nutritional=Sum('no_of_nutritional'))[
-            'total_nutritional']
-        medical_support_sum = Treatment.objects.filter(patient=instance).aggregate(total_medical_support=Sum('medical_support'))[
-            'total_medical_support']
+        nutritional_sum = \
+            Treatment.objects.filter(patient=instance).aggregate(total_nutritional=Sum('no_of_nutritional'))[
+                'total_nutritional']
+        medical_support_sum = \
+            Treatment.objects.filter(patient=instance).aggregate(total_medical_support=Sum('medical_support'))[
+                'total_medical_support']
 
         rep["creator"] = UserSerializer(creator, context=self.context).data
         rep["patient_occupation"] = OccupationSerializer(patient_occupation, context=self.context).data
@@ -163,7 +169,12 @@ class PatientSerializer(AbstractSerializer):
         rep["parents_occupation"] = OccupationSerializer(parents_occupation, context=self.context).data
 
         rep["patient_education"] = EducationLevelSerializer(patient_education, context=self.context).data
-        rep["patient_language"] = LanguageSerializer(patient_language, context=self.context).data
+        # rep["patient_language"] = LanguageSerializer(patient_language, context=self.context).data
+        rep["patient_language"] = LanguageSerializer(
+            Language.objects.filter(public_id__in=patient_language),
+            many=True,
+            context=self.context
+        ).data
 
         rep["ethnic_group"] = EthnicSerializer(ethnic_group, context=self.context).data
         rep["religion"] = ReligionSerializer(religion, context=self.context).data

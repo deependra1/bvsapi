@@ -9,10 +9,10 @@ from bvs.auth.permissions import UserPermission
 
 class UserViewSet(AbstractViewSet):
     http_method_names = ("post", "patch", "get", "delete")
-    permission_classes = (
-        IsAuthenticated,
-        UserPermission,
-    )
+    # permission_classes = (
+    #     IsAuthenticated,
+    #     UserPermission,
+    # )
     serializer_class = UserSerializer
 
     def get_queryset(self):

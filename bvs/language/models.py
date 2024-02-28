@@ -8,7 +8,7 @@ class LanguageManager(AbstractManager):
 
 
 class Language(AbstractModel):
-    language_name = models.CharField(max_length=200, null=True)
+    language_name = models.CharField(max_length=255, null=True)
 
     objects = LanguageManager()
 

@@ -10,7 +10,7 @@ class TreatmentManager(AbstractManager):
 class Treatment(AbstractModel):
     patient = models.ForeignKey("bvs_patient.Patient", on_delete=models.CASCADE)
     # for transport
-    mode_of_transport = models.CharField(max_length=50, null=True)
+    mode_of_transport = models.CharField(max_length=255, null=True)
     distance = models.IntegerField(null=True, blank=True)
     time = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
@@ -18,7 +18,7 @@ class Treatment(AbstractModel):
 
     hospital = models.ForeignKey(to="bvs_hospital.Hospital", on_delete=models.CASCADE, null=True, blank=True)
     hospitalized_date = models.DateTimeField(null=True, blank=True)
-    doctor_name = models.CharField(max_length=150, null=True, blank=True)
+    doctor_name = models.CharField(max_length=255, null=True, blank=True)
     dischared_date = models.DateTimeField(null=True, blank=True)
     expired_date = models.DateTimeField(null=True, blank=True)
     # current_status = models.CharField(max_length=50, null=True)

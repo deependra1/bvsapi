@@ -8,7 +8,7 @@ class QuestionManager(AbstractManager):
 
 
 class Question(AbstractModel):
-    questionnaire = models.CharField(max_length=255, null=True, blank=True)
+    questionnaire = models.TextField(null=True, blank=True)
 
     objects = QuestionManager()
 

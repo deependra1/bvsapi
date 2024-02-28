@@ -8,7 +8,7 @@ class BurnTypeManager(AbstractManager):
 
 
 class BurnType(AbstractModel):
-    burn_type = models.CharField(max_length=200, null=True)
+    burn_type = models.CharField(max_length=255, null=True)
 
     objects = BurnTypeManager()
 

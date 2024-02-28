@@ -8,7 +8,7 @@ class FollowUpSummaryManager(AbstractManager):
 
 
 class FollowUpSummary(AbstractModel):
-    follow_up_summary = models.CharField(max_length=200, null=True)
+    follow_up_summary = models.CharField(max_length=255, null=True)
 
     objects = FollowUpSummaryManager()
 

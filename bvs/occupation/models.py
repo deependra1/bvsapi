@@ -8,7 +8,7 @@ class OccupationManager(AbstractManager):
 
 
 class Occupation(AbstractModel):
-    occupation_name = models.CharField(max_length=50, null=True)
+    occupation_name = models.CharField(max_length=255, null=True)
 
     objects = OccupationManager()
 

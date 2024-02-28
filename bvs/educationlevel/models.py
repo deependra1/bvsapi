@@ -8,7 +8,7 @@ class EducationLevelManager(AbstractManager):
 
 
 class EducationLevel(AbstractModel):
-    education_level = models.CharField(max_length=50, null=True)
+    education_level = models.CharField(max_length=255, null=True)
 
     objects = EducationLevelManager()
 

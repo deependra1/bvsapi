@@ -8,7 +8,7 @@ class EthnicManager(AbstractManager):
 
 
 class Ethnic(AbstractModel):
-    ethnic_group = models.CharField(max_length=50, null=True)
+    ethnic_group = models.CharField(max_length=255, null=True)
 
     objects = EthnicManager()
 

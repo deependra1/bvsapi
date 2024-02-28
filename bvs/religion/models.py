@@ -8,7 +8,7 @@ class ReligionManager(AbstractManager):
 
 
 class Religion(AbstractModel):
-    religion = models.CharField(max_length=50, null=True)
+    religion = models.CharField(max_length=255, null=True)
 
     objects = ReligionManager()
 

@@ -8,7 +8,7 @@ class HospitalManager(AbstractManager):
 
 
 class Hospital(AbstractModel):
-    hospital_name = models.CharField(max_length=200, null=True)
+    hospital_name = models.CharField(max_length=255, null=True)
 
     objects = HospitalManager()
 
