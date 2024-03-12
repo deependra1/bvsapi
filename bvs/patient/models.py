@@ -97,8 +97,26 @@ class Patient(AbstractModel):
     def __str__(self):
         return self.registration_number
 
+    # def save(self, *args, **kwargs):
+    #     if not self.registration_number:
+    #         last_registration = Patient.objects.filter(
+    #             fiscal_year=self.fiscal_year,
+    #             registration_location=self.registration_location
+    #         ).order_by('-registration_number').first()
+    #
+    #         if last_registration:
+    #             last_serial_number = int(last_registration.registration_number.split('-')[-1])
+    #             new_serial_number = last_serial_number + 1
+    #         else:
+    #             new_serial_number = 1
+    #
+    #         self.registration_number = f"{self.fiscal_year}-{self.registration_location}-{new_serial_number}"
+    #
+    #     super().save(*args, **kwargs)
+
     def save(self, *args, **kwargs):
         if not self.registration_number:
+            # Retrieve the last registration with the same fiscal year and location
             last_registration = Patient.objects.filter(
                 fiscal_year=self.fiscal_year,
                 registration_location=self.registration_location
@@ -110,6 +128,12 @@ class Patient(AbstractModel):
             else:
                 new_serial_number = 1
 
-            self.registration_number = f"{self.fiscal_year}-{self.registration_location}-{new_serial_number}"
+            # Ensure uniqueness by checking if the generated registration number already exists
+            new_registration_number = f"{self.fiscal_year}-{self.registration_location}-{new_serial_number}"
+            while Patient.objects.filter(registration_number=new_registration_number).exists():
+                new_serial_number += 1
+                new_registration_number = f"{self.fiscal_year}-{self.registration_location}-{new_serial_number}"
+
+            self.registration_number = new_registration_number
 
         super().save(*args, **kwargs)
